@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.RectF;
 
@@ -15,6 +16,34 @@ public class TimelineObject {
 
     private Bitmap bitmap;
     private String title;
+    private float x;
+    private float y;
+
+    public float getR() {
+        return r;
+    }
+
+    public void setR(float r) {
+        this.r = r;
+    }
+
+    private float r;
+
+    public float getX() {
+        return x;
+    }
+
+    public void setX(float x) {
+        this.x = x;
+    }
+
+    public float getY() {
+        return y;
+    }
+
+    public void setY(float y) {
+        this.y = y;
+    }
 
     public String getTitle() {
         return title;
@@ -47,7 +76,8 @@ public class TimelineObject {
     public int hashCode() {
         return bitmap.hashCode()+(completed?1:0)+title.hashCode();
     }
-    public void draw(Canvas canvas, Paint paint,float x,float y,float r) {
+    public void draw(Canvas canvas, Paint paint) {
+        canvas.save();
         Path path = new Path();
         path.addArc(new RectF(x-r,y-r,x+r,y+r),0,360);
         paint.setStyle(Paint.Style.STROKE);
@@ -69,9 +99,11 @@ public class TimelineObject {
         paint.setAlpha(255);
         paint.setColor(Color.WHITE);
         if(title!=null && !title.trim().equals("")) {
-            paint.setTextSize(r/10);
+            paint.setTextSize(r/3);
             float ftSize = paint.measureText(title);
+            paint.setStyle(Paint.Style.FILL);
             canvas.drawText(title,x-ftSize/2,y-ftSize/2,paint);
         }
+        canvas.restore();
     }
 }
