@@ -51,6 +51,12 @@ public class HorizontalTimelineView extends TimelineView {
     public float getXDir() {
         return 1;
     }
+    public float getYDir() {
+        return 0;
+    }
+    public boolean onTouchEvent(MotionEvent event) {
+        return handleTouch(event);
+    }
 //    public void init(int w,int h) {
 //        float initX = w/10;
 //        radius = h/4;

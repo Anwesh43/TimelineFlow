@@ -94,8 +94,8 @@ public class TimelineView extends View {
             initY = h/10;
 
         }
-        gapX = (w/2-radius-scrollX)*getXDir();
-        gapY = (h/2-radius-scrollY)*getYDir();
+        gapX = (w/2>3*radius+scrollX)?(w / 2 - radius - scrollX) * getXDir():(w-radius-scrollX)*getXDir();
+        gapY = (h/2>3*radius+scrollY)?(h/2-radius-scrollY)*getYDir():(h-radius-scrollY)*getYDir();
 
 
         totalX = timelineObjects.size()*gapX;
@@ -133,9 +133,10 @@ public class TimelineView extends View {
         time++;
 
     }
-    public boolean onTouchEvent(MotionEvent event) {
+    protected boolean handleTouch(MotionEvent event) {
         return gestureDetector.onTouchEvent(event);
     }
+
 
 
 }

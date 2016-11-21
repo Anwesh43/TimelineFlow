@@ -1,6 +1,7 @@
 package com.anwesome.uiview.timelineflow;
 
 import android.content.Context;
+import android.view.MotionEvent;
 
 import java.util.List;
 
@@ -13,5 +14,11 @@ public class VerticalTimelineView extends TimelineView {
     }
     public float getYDir() {
         return 1;
+    }
+    public float getXDir() {
+        return 0;
+    }
+    public boolean onTouchEvent(MotionEvent event) {
+        return handleTouch(event);
     }
 }
